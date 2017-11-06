@@ -1,6 +1,6 @@
 FROM anapsix/alpine-java:8_jdk
 
-LABEL maintainer=@qgadrian
+LABEL maintainer=https://github.com/qgadrian
 
 ########################
 # INSTALL COMMON TOOLS
@@ -43,6 +43,19 @@ RUN [ -d $ANDROID_LICENSES ] || mkdir $ANDROID_LICENSES \
   && [ -f $ANDROID_LICENSES/android-sdk-license ] || echo 8933bad161af4178b1185d1a37fbf41ea5269c55 > $ANDROID_LICENSES/android-sdk-license \
   && [ -f $ANDROID_LICENSES/android-sdk-preview-license ] || echo 84831b9409646a918e30573bab4c9c91346d8abd > $ANDROID_LICENSES/android-sdk-preview-license \
   && [ -f $ANDROID_LICENSES/intel-android-extra-license ] || echo d975f751698a77b662f1254ddbeed3901e976f5a > $ANDROID_LICENSES/intel-android-extra-license
+
+########################
+# GOOGLE CLOUD SDK
+########################
+ENV PATH /google-cloud-sdk/bin:$PATH
+
+RUN apk add --update make ca-certificates openssl python gettext \
+    && update-ca-certificates \
+    && wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz \
+    && tar zxvf google-cloud-sdk.tar.gz \
+    && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true --additional-components kubectl \
+    && rm google-cloud-sdk.tar.gz \
+    && gcloud --quiet components update
 
 ########################
 # FIREBASE
