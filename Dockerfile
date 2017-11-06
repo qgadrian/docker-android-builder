@@ -54,7 +54,7 @@ RUN apk add --update make ca-certificates openssl python gettext \
     && update-ca-certificates \
     && wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz \
     && tar zxvf google-cloud-sdk.tar.gz \
-    && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true --additional-components kubectl \
+    && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true \
     && rm google-cloud-sdk.tar.gz \
     && gcloud --quiet components update
 
