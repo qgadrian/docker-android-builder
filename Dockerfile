@@ -49,7 +49,7 @@ RUN [ -d $ANDROID_LICENSES ] || mkdir $ANDROID_LICENSES \
 ########################
 RUN mkdir -p /android/
 COPY content/firebase_test.sh /android/
-RUN chmod 777 /android/content/firebase_test.sh && chmod +x /android/content/firebase_test.sh
+RUN chmod 777 /android/firebase_test.sh && chmod +x /android/firebase_test.sh
 
 ########################
 # COPY ANDROID APP SRC
