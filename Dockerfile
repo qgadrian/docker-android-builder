@@ -45,6 +45,12 @@ RUN [ -d $ANDROID_LICENSES ] || mkdir $ANDROID_LICENSES \
   && [ -f $ANDROID_LICENSES/intel-android-extra-license ] || echo d975f751698a77b662f1254ddbeed3901e976f5a > $ANDROID_LICENSES/intel-android-extra-license
 
 ########################
+# FIREBASE
+########################
+RUN mkdir -p /android/
+COPY content/firebase_test.sh /android/
+
+########################
 # COPY ANDROID APP SRC
 ########################
 COPY . .
