@@ -1,6 +1,6 @@
 FROM anapsix/alpine-java:8_jdk
 
-LABEL maintainer=https://github.com/qgadrian
+LABEL maintainer=@qgadrian
 
 ########################
 # INSTALL COMMON TOOLS
