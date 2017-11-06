@@ -6,7 +6,8 @@ LABEL maintainer=https://github.com/qgadrian
 # INSTALL COMMON TOOLS
 ########################
 RUN apk add --update \
-  unzip
+  unzip \
+  curl
 
 ########################
 # INSTALL ANDROID SDK
