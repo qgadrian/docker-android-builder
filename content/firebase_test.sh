@@ -27,6 +27,10 @@ while [[ $# -gt 1 ]]; do
       ORIENTATIONS="$2"
       shift # past argument
     ;;
+    -n|--network-profile)
+      NETWORK_PROFILE="$2"
+      shift # past argument
+    ;;
     -r|--apk-release-path)
       PROD_APK_PATH="$2"
       shift # past argument
@@ -45,6 +49,7 @@ SDKS="${SDKS-"23"}"
 LOCALES="${LOCALES-"en"}"
 ORIENTATIONS="${ORIENTATIONS-"portrait"}"
 PROD_APK_PATH="${PROD_APK_PATH-"app-prod-release.apk"}"
+NETWORK_PROFILE="${NETWORK_PROFILE-"LTE"}"
 TEST_APK_PATH="${TEST_APK_PATH-"app-prod-release-androidTest.apk"}"
 
 echo "Authenticating service account in google cloud..."
@@ -59,6 +64,7 @@ gcloud config set project ${PROJECT}
 echo "Testing project with the following configurations:"
 echo "Devices: [${DEVICES}]"
 echo "SDK's: [${SDKS}]"
+echo "Network profile: [${NETWORK_PROFILE}]"
 echo "Locales: [${LOCALES}]"
 echo "Orientations: [${ORIENTATIONS}]"
 echo ""
@@ -69,5 +75,6 @@ gcloud firebase test android run \
   --test ${TEST_APK_PATH} \
   --device-ids ${DEVICES} \
   --os-version-ids ${SDKS} \
+  --network-profile ${NETWORK_PROFILE} \
   --locales ${LOCALES} \
   --orientations ${ORIENTATIONS}
